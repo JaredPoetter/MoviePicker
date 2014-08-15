@@ -1,9 +1,10 @@
 var showtimes = require('showtimes');
-var s = showtimes(55121, {date:'7'});
+var colors = require('colors');
+var s = showtimes(55121, {date:1});
 
 var movie1 = "The Hundred-Foot Journey";
 var movie2 = "Guardians of the Galaxy";
-var timeGap = 30;
+var timeGap = 10;
 var movie1_TimeArray = new Array();
 var movie2_TimeArray = new Array();
 
@@ -13,11 +14,12 @@ var movie2_TimeArray = new Array();
 
 s.getTheaters(function (err, theaters) {
 	// console.log(theaters);
-	console.log(theaters.length);
+	// console.log(theaters.length);
 
 	//Looping through the theaters
 	for(var theaterIndex = 0; theaterIndex < theaters.length; theaterIndex++){
-	  	console.log('Theater: '+theaters[theaterIndex].name);
+		var theaterString = 'Theater: '+theaters[theaterIndex].name;
+	  	console.log(theaterString.magenta);
 
 	  	//Looping through the movives
 	  	for (var movieIndex = 0; movieIndex < theaters[theaterIndex].movies.length; movieIndex++) {
@@ -60,11 +62,13 @@ s.getTheaters(function (err, theaters) {
 		  									((movie2_TimeArray[movie2ShowtimeIndex][0]*60) + movie2_TimeArray[movie2ShowtimeIndex][1]));
 
 		  				if(actualGap <= timeGap){
-		  					console.log('Found One!');
-		  					console.log('Actual Gap: '+actualGap);
-		  					console.log('   Movie 1: '+movie1+' @ '+movie1_TimeArray[movie1ShowtimeIndex][0]+':'+movie1_TimeArray[movie1ShowtimeIndex][1]);
-		  					console.log('   Movie 2: '+movie2+' @ '+movie2_TimeArray[movie2ShowtimeIndex][0]+':'+movie2_TimeArray[movie2ShowtimeIndex][1]);
-		  					console.log('\n');
+		  					// console.log('Found One!');
+		  					// console.log('Actual Gap: '+actualGap);
+		  					var movie1String = '   Movie 1: '+movie1+' @ '+movie1_TimeArray[movie1ShowtimeIndex][0]+':'+movie1_TimeArray[movie1ShowtimeIndex][1];
+		  					var movie2String = '   Movie 2: '+movie2+' @ '+movie2_TimeArray[movie2ShowtimeIndex][0]+':'+movie2_TimeArray[movie2ShowtimeIndex][1];
+		  					console.log(movie1String.green);
+		  					console.log(movie2String.green);
+		  					console.log('');
 		  				}
 		  			}
 		  		}
